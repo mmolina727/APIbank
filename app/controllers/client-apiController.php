@@ -21,7 +21,7 @@ class ClientApiController{
 
     function getClients($params= null){
         if(isset($_GET['page'])){
-            if(is_numeric($_GET['page'])){
+            if(is_numeric($_GET['page'])&& $_GET['page']>0){
                 $quantity= 5;
                 $since= ($_GET['page']-1)*$quantity;
                 $clients= $this->model->getByPage($since,$quantity);
@@ -34,13 +34,13 @@ class ClientApiController{
             }
         }
         if(isset($_GET['sort'])){
-            if(($_GET['sort']=='saldo')||($_GET['sort']=='id_cliente')||($_GET['sort']=='num_cuenta')||($_GET['sort']=='fecha_nacimiento')||($_GET['sort']=='ultimo_movimiento')||($_GET['sort']=='dni')||($_GET['sort']=='direccion')){
+            if(($_GET['sort']=='saldo')||($_GET['sort']=='id_cliente')||($_GET['sort']=='num_cuenta')||($_GET['sort']=='fecha_nacimiento')||($_GET['sort']=='ultimo_movimiento')||($_GET['sort']=='dni')||($_GET['sort']=='nombre_apellido')||($_GET['sort']=='direccion')){
                 $clients=$this->model->getAllByColumn($_GET['sort']);
                 $this->view->response($clients);
                 die;
             }
             else{
-                $this->view->response("Error. Verify fields",404);
+                $this->view->response("Error. Verify fields",400);
                 die;
             }
         }
@@ -71,6 +71,7 @@ class ClientApiController{
 
     function addClient($params= null){
         $client= $this->getData();
+        
 
         if(empty($client->nombre_apellido||$client->dni||$client->direccion||$client->fecha_nacimiento||$client->saldo||$client->ultimo_movimiento||$client->num_cuenta||$client->id_cuenta)){
             $this->view->response("Error. Verify fields",400);
@@ -81,5 +82,4 @@ class ClientApiController{
             $this->view->response("Client added",201);
         }
     }
-
 }
