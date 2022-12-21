@@ -47,4 +47,15 @@ class ModelClient{
         $clients= $sentencia->fetchAll(PDO::FETCH_ASSOC);
         return $clients;
     }
+
+    function delete($id){
+        $sentencia = $this->db->prepare('DELETE FROM cliente WHERE id_cliente = ?');
+        $sentencia-> execute([$id]);
+    }
+    
+    function updateClient($nombre_apellido, $dni, $direccion, $fecha_nacimiento,$saldo,$ultimo_movimiento, $num_cuenta,$id_cliente){
+        $sentencia = $this->db->prepare("UPDATE  cliente SET nombre_apellido = ? , dni= ? , direccion= ? , fecha_nacimiento = ? ,saldo=?,ultimo_movimiento=?, num_cuenta = ? WHERE id_cliente = ?;");
+        $sentencia->execute([$nombre_apellido, $dni, $direccion, $fecha_nacimiento,$saldo,$ultimo_movimiento, $num_cuenta, $id_cliente]);
+        return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    }
 }    

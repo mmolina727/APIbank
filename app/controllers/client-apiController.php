@@ -82,4 +82,34 @@ class ClientApiController{
             $this->view->response("Client added",201);
         }
     }
+
+    function delete($params= null){
+        $id= $params[':ID'];
+
+        $client= $this->model->getClient($id);
+
+        if($client){
+            $this->model->delete($id);
+            $this->view->response("client delete",200);
+            die;
+        }
+        else{
+            $this->view->response("Client not found",404);
+        }
+    }
+
+    function updateClient($params= null){
+        $id= $params[':ID'];
+
+        $client= $this->model->getClient($id);
+
+        if($client){
+            $clients= $this->getData();
+            $this->model->updateClient($clients->nombre_apellido, $clients->dni, $clients->direccion,$clients->fecha_nacimiento,$clients->saldo,$clients->ultimo_movimiento,$clients->num_cuenta,$clients->id_cliente);
+            $this->view->response("Client modified",200);
+        }
+        else{
+            $this->view->response("Client not found",404);
+        }
+    }
 }
