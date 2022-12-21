@@ -12,12 +12,14 @@
 
 
 ### Endpoints  
-* GET:  app/clients -> Array<Clients>              Code: 200 OK
-* GET: app/client/:ID -> Client                          Code: 200 OK
-* GET: app/clients?sort= column                      Code: 200 OK
+* GET:  app/clients -> Array<Clients>             Code: 200 OK
+* GET: app/client/:ID -> Client                   Code: 200 OK
+* GET: app/clients?sort= column                   Code: 200 OK
 * GET: app/clients?page= number                   Code: 200 OK
-* GET: app/clients?serch= nombre_apellido    Code: 200 OK
-* POST: app/client -> Client                           Code: 201  
+* GET: app/clients?serch= nombre_apellido         Code: 200 OK
+* POST: app/client -> Client                      Code: 201
+* DELETE: app/client/:ID -> Client                Code: 200 OK
+* PUT: app/client/:ID -> Client                   Code: 200 OK
   
 
 
