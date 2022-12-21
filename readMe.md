@@ -17,7 +17,7 @@
 * GET: app/clients?sort= column                      Code: 200 OK
 * GET: app/clients?page= number                   Code: 200 OK
 * GET: app/clients?serch= nombre_apellido    Code: 200 OK
-* POST: app/clients -> Client                           Code: 201  
+* POST: app/client -> Client                           Code: 201  
   
 
 
